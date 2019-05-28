@@ -26,7 +26,7 @@ class Reserve
             extract($_POST);
 
 
-            $result = $this->Model->read("SELECT * FROM `reservering` WHERE date BETWEEN DATE_ADD(\"$date\", INTERVAL -2 HOUR)  AND DATE_ADD(\"$date\", INTERVAL 2 HOUR) AND tafel = $tafel");
+            $result = $this->Model->read("SELECT * FROM `reservering` WHERE date BETWEEN (\\"$date\\" - INTERVAL 2 HOUR)  AND (\\"$date\\" + INTERVAL 2 HOUR) AND tafel = $tafel");
             if(!empty($result)) {
                 header('Location: ?fail');exit;
             }
